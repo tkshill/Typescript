@@ -1,4 +1,3 @@
-// shortcut for making fields from CellNames. Thanks, Typescript!
 type Grid = { [key: string]: "X" | "O" | null };
 
 const hasWinner = (grid: Grid) => {
@@ -42,18 +41,18 @@ export default class Game {
   }
 
   get turn() {
-    const count = Object.values(this._grid) // get the grid items
+    const counts = Object.values(this._grid) // get the grid items
       // count all the Xs and Os
       .reduce(
-        (counter, value) => {
-          if (value === "X") counter.x += 1;
-          else if (value === "O") counter.o += 1;
-          return counter;
+        (acc, value) => {
+          if (value === "X") acc.Xs += 1;
+          else if (value === "O") acc.Os += 1;
+          return acc;
         },
-        { x: 0, o: 0 }
+        { Xs: 0, Os: 0 }
       );
     // if there are more Xs on the board, it's O's turn.
-    return count.x > count.o ? "O" : "X";
+    return counts.Xs > counts.Os ? "O" : "X";
   }
 
   get winner() {
