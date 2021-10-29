@@ -61,7 +61,7 @@ export default class Game {
     };
   }
 
-  get turn(): string {
+  get turn() {
     const count = Object.entries(this._grid)
       .map(([_, value]) => value) // get the grid items
       .reduce(
@@ -76,7 +76,7 @@ export default class Game {
     return count.x > count.o ? "O" : "X"; // if there are more Xs, it's O's turn.
   }
 
-  get winner(): string | null {
+  get winner() {
     // if there's a winner and it's X's turn, that means O just won
     if (hasWinner(this._grid) && this.turn === "X") return "O";
     // if there's a winner and it's O's turn, that means X just won
@@ -89,8 +89,7 @@ export default class Game {
     return Object.entries(this._grid).every(([_, value]) => !!value);
   }
 
-  getCell = (name: string): string | null =>
-    isCellName(name) ? this._grid[name] : null;
+  getCell = (name: string) => (isCellName(name) ? this._grid[name] : null);
 
   setCell = (name: string) => {
     // no winner, a valid name and an empty cell? Set the value.
