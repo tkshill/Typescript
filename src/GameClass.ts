@@ -4,11 +4,14 @@ type Grid = { [key: number]: "X" | "O" | null };
 
 const keys = [2, 7, 6, 9, 5, 1, 4, 3, 8];
 
+// get every unique combination of numbers and only keep the ones that sum to 15
+const winningCombos = [...new C.Combination(keys, 3)].filter(
+  (nums) => nums.reduce((acc, num) => acc + num) === 15
+);
+
 const hasWinner = (grid: Grid) =>
   // get every unique three number combo
-  !![...new C.Combination(keys, 3)]
-    // keep all the ones that add to 15. You should totally ask me why this works.
-    .filter((nums) => nums.reduce((acc, num) => acc + num) === 15)
+  !!winningCombos
     // get the corresponding grid items
     .map((comboNumbers) => comboNumbers.map((num) => grid[num]))
     // if you find at least one with all Xs or all Os, there's a winner!
@@ -45,11 +48,9 @@ export default class Game {
   }
 
   get winner() {
-    // if there's a winner and it's X's turn, that means O just won
-    if (hasWinner(this._grid) && this.turn === "X") return "O";
-    // if there's a winner and it's O's turn, that means X just won
-    else if (hasWinner(this._grid) && this.turn === "O") return "X";
-    else return null;
+    if (!hasWinner(this._grid)) return null;
+    // if there's a winner and it's X's turn, that means O just won. Otherwise, X just won.
+    else return this.turn === "X" ? "O" : "x";
   }
 
   get isFull() {
