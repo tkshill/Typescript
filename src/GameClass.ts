@@ -1,28 +1,8 @@
-const players = ["X", "O"] as const;
-type Player = typeof players[number];
-
-const cellNames = [
-  "top-left",
-  "top-middle",
-  "top-right",
-  "center-left",
-  "center-middle",
-  "center-right",
-  "bottom-left",
-  "bottom-middle",
-  "bottom-right"
-] as const;
-type CellName = typeof cellNames[number];
-
 // shortcut for making fields from CellNames. Thanks, Typescript!
-type Grid = { [key in CellName]: Player | null };
-
-// a way of "proving" to ts that a string is actually a CellName
-const isCellName = (x: string): x is CellName =>
-  cellNames.includes(x as CellName);
+type Grid = { [key: string]: "X" | "O" | null };
 
 const hasWinner = (grid: Grid) => {
-  const winningComboNames: CellName[][] = [
+  const winningComboNames: string[][] = [
     ["top-left", "top-middle", "top-right"], // top row
     ["center-left", "center-middle", "center-right"], // middle row
     ["bottom-left", "bottom-middle", "bottom-right"], // bottom row
@@ -62,10 +42,9 @@ export default class Game {
   }
 
   get turn() {
-    const count = Object.entries(this._grid)
-      .map(([_, value]) => value) // get the grid items
+    const count = Object.values(this._grid) // get the grid items
+      // count all the Xs and Os
       .reduce(
-        // count all the Xs and Os
         (counter, value) => {
           if (value === "X") counter.x += 1;
           else if (value === "O") counter.o += 1;
@@ -73,7 +52,8 @@ export default class Game {
         },
         { x: 0, o: 0 }
       );
-    return count.x > count.o ? "O" : "X"; // if there are more Xs, it's O's turn.
+    // if there are more Xs on the board, it's O's turn.
+    return count.x > count.o ? "O" : "X";
   }
 
   get winner() {
@@ -89,15 +69,15 @@ export default class Game {
     return Object.entries(this._grid).every(([_, value]) => !!value);
   }
 
-  getCell = (name: string) => (isCellName(name) ? this._grid[name] : null);
+  getCell = (name: string) => (name in this._grid ? this._grid[name] : null);
 
   setCell = (name: string) => {
     // no winner, a valid name and an empty cell? Set the value.
-    if (!this.winner && isCellName(name) && !this._grid[name])
+    if (!this.winner && name in this._grid && !this._grid[name])
       this._grid[name] = this.turn;
   };
 
-  static get cellNames(): string[] {
-    return cellNames.map((n) => n);
+  get cellNames(): string[] {
+    return Object.keys(this._grid);
   }
 }

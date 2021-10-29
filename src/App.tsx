@@ -29,7 +29,7 @@ export default function App() {
   return (
     <div className="App">
       <h1>Reac Tac Toe</h1>
-      <div id="gamebox">{Game.cellNames.map(Cell)}</div>
+      <div id="gamebox">{state.game.cellNames.map(Cell)}</div>
       <div id="status">{statusMessage()}</div>
       <button onClick={() => update("Restart")}>Restart</button>
     </div>
