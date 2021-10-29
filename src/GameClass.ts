@@ -1,43 +1,32 @@
-type Grid = { [key: string]: "X" | "O" | null };
+import * as C from "js-combinatorics";
 
-const hasWinner = (grid: Grid) => {
-  const winningComboNames: string[][] = [
-    ["top-left", "top-middle", "top-right"], // top row
-    ["center-left", "center-middle", "center-right"], // middle row
-    ["bottom-left", "bottom-middle", "bottom-right"], // bottom row
-    ["top-left", "center-left", "bottom-left"], // left column
-    ["top-middle", "center-middle", "bottom-middle"], // middle column
-    ["top-right", "center-right", "bottom-right"], // right column
-    ["top-left", "center-middle", "bottom-right"], // descending diagonal
-    ["bottom-left", "center-middle", "top-right"] // ascending diagonal
-  ];
+type Grid = { [key: number]: "X" | "O" | null };
 
-  return !!winningComboNames
-    // get grid values for each combo
-    .map((comboNames) => comboNames.map((name) => grid[name]))
-    // try to find a groups that is all Xs or all Os. That's a winner!
+const keys = [2, 7, 6, 9, 5, 1, 4, 3, 8];
+
+const hasWinner = (grid: Grid) =>
+  // get every unique three number combo
+  !![...new C.Combination(keys, 3)]
+    // keep all the ones that add to 15. You should totally ask me why this works.
+    .filter((nums) => nums.reduce((acc, num) => acc + num) === 15)
+    // get the corresponding grid items
+    .map((comboNumbers) => comboNumbers.map((num) => grid[num]))
+    // if you find at least one with all Xs or all Os, there's a winner!
     .find(
       (comboValues) =>
         comboValues.every((v) => v === "X") ||
         comboValues.every((v) => v === "O")
     );
-};
 
 export default class Game {
   private _grid: Grid;
 
   constructor() {
-    this._grid = {
-      "top-left": null,
-      "top-middle": null,
-      "top-right": null,
-      "center-left": null,
-      "center-middle": null,
-      "center-right": null,
-      "bottom-left": null,
-      "bottom-middle": null,
-      "bottom-right": null
-    };
+    // using reduce to add all our keys with null values to an object
+    this._grid = keys.reduce(
+      (grid, key) => Object.assign(grid, { [key]: null }),
+      {}
+    );
   }
 
   get turn() {
@@ -68,15 +57,15 @@ export default class Game {
     return Object.entries(this._grid).every(([_, value]) => !!value);
   }
 
-  getCell = (name: string) => (name in this._grid ? this._grid[name] : null);
+  getCell = (name: number) => (name in this._grid ? this._grid[name] : null);
 
-  setCell = (name: string) => {
+  setCell = (name: number) => {
     // no winner, a valid name and an empty cell? Set the value.
     if (!this.winner && name in this._grid && !this._grid[name])
       this._grid[name] = this.turn;
   };
 
-  get cellNames(): string[] {
-    return Object.keys(this._grid);
+  get cellNames() {
+    return keys;
   }
 }

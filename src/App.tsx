@@ -7,15 +7,15 @@ const initialGame = () => ({ game: new Game() });
 export default function App() {
   const [state, setState] = useState(initialGame());
 
-  const update = (value: string) => {
+  const update = (value: number | "Restart") => {
     if (value !== "Restart") {
       state.game.setCell(value);
       setState({ ...state });
     } else setState(initialGame());
   };
 
-  const Cell = (name: string) => (
-    <button key={name} id={name} className="cell" onClick={() => update(name)}>
+  const Cell = (name: number) => (
+    <button key={name} id={name.toString()} onClick={() => update(name)}>
       {state.game.getCell(name) ?? ""}
     </button>
   );

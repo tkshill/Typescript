@@ -14,9 +14,9 @@
   min-width: 150px;
   min-height: 150px;
   grid-template-areas:
-    " top-left top-middle top-right "
-    "center-left center-middle center-right"
-    "bottom-left bottom-middle bottom-right";
+    "2 7 6"
+    "9 5 1"
+    "4 3 8";
 }
 
 #status {
