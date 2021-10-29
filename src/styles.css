@@ -1,0 +1,24 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#gamebox {
+  display: grid;
+  width: 80vw;
+  height: 80vw;
+  max-width: 600px;
+  max-height: 600px;
+  min-width: 150px;
+  min-height: 150px;
+  grid-template-areas:
+    " top-left top-middle top-right "
+    "center-left center-middle center-right"
+    "bottom-left bottom-middle bottom-right";
+}
+
+#status {
+  margin: 5px;
+}
