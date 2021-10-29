@@ -22,7 +22,7 @@ export default class Game {
   private _grid: Grid;
 
   constructor() {
-    // using reduce to add all our keys with null values to an object
+    // using reduce to add all our keys to an object with initial value null;
     this._grid = keys.reduce(
       (grid, key) => Object.assign(grid, { [key]: null }),
       {}
@@ -60,7 +60,7 @@ export default class Game {
   getCell = (name: number) => (name in this._grid ? this._grid[name] : null);
 
   setCell = (name: number) => {
-    // no winner, a valid name and an empty cell? Set the value.
+    // no winner yet, a valid name and an empty cell? Set the value.
     if (!this.winner && name in this._grid && !this._grid[name])
       this._grid[name] = this.turn;
   };

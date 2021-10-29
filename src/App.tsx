@@ -14,9 +14,9 @@ export default function App() {
     } else setState(initialGame());
   };
 
-  const Cell = (name: number) => (
-    <button key={name} id={name.toString()} onClick={() => update(name)}>
-      {state.game.getCell(name) ?? ""}
+  const Cell = (num: number) => (
+    <button key={num} id={num.toString()} onClick={() => update(num)}>
+      {state.game.getCell(num) ?? ""}
     </button>
   );
 
