@@ -4,13 +4,13 @@ type Grid = { [key: number]: "X" | "O" | null };
 
 const keys = [2, 7, 6, 9, 5, 1, 4, 3, 8];
 
-// get every unique combination of numbers and only keep the ones that sum to 15
+// get every unique combination of 3 numbers and only keep the ones that sum to 15
+// I'll explain why this works later.
 const winningCombos = [...new C.Combination(keys, 3)].filter(
   (nums) => nums.reduce((acc, num) => acc + num) === 15
 );
 
 const hasWinner = (grid: Grid) =>
-  // get every unique three number combo
   !!winningCombos
     // get the corresponding grid items
     .map((comboNumbers) => comboNumbers.map((num) => grid[num]))
