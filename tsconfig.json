@@ -5,10 +5,14 @@
     "compilerOptions": {
         "strict": true,
         "esModuleInterop": true,
+        "target": "es6",
         "lib": [
             "dom",
-            "esnext"
+            "esnext",
+            "DOM.Iterable"
         ],
+        "forceConsistentCasingInFileNames": true,
+        "module": "esnext",
         "jsx": "react-jsx"
     }
 }
