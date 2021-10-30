@@ -1,2 +1,3 @@
 # Reac-tac-toe
-Created with CodeSandbox
+
+Tic Tac Toe implemented with Typescript and React with a mix of functional and object oriented techniques.
