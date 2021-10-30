@@ -33,8 +33,9 @@ export default class Game {
   }
 
   get turn() {
-    const counts = Object.values(this._grid) // get the grid items
-      // make an object that counts all the Xs and Os
+    // get the grid items
+    const counts = Object.values(this._grid)
+      // use reduce to make an object that counts all the Xs and Os
       .reduce(
         (acc, value) => {
           if (value === "X") acc.Xs += 1;
