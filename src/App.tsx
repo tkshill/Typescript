@@ -15,7 +15,7 @@ export default function App() {
   };
 
   const Cell = (num: number) => (
-    <button key={num} id={num.toString()} onClick={() => update(num)}>
+    <button key={num} id={`${num}`} onClick={() => update(num)}>
       {state.game.getCell(num) ?? ""}
     </button>
   );
@@ -28,7 +28,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Reac Tac Toe</h1>
+      <h1>ReacTacToe</h1>
       <div id="gamebox">{state.game.cellNames.map(Cell)}</div>
       <div id="status">{statusMessage()}</div>
       <button onClick={() => update("Restart")}>Restart</button>

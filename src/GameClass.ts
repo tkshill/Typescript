@@ -25,7 +25,7 @@ export default class Game {
   private _grid: Grid;
 
   constructor() {
-    // using reduce to add all our keys to an object with initial value null;
+    // using reduce to add all our keys to an object with initial values of null;
     this._grid = keys.reduce(
       (grid, key) => Object.assign(grid, { [key]: null }),
       {}
@@ -34,7 +34,7 @@ export default class Game {
 
   get turn() {
     const counts = Object.values(this._grid) // get the grid items
-      // count all the Xs and Os
+      // make an object that counts all the Xs and Os
       .reduce(
         (acc, value) => {
           if (value === "X") acc.Xs += 1;
@@ -50,18 +50,18 @@ export default class Game {
   get winner() {
     if (!hasWinner(this._grid)) return null;
     // if there's a winner and it's X's turn, that means O just won. Otherwise, X just won.
-    else return this.turn === "X" ? "O" : "x";
+    else return this.turn === "X" ? "O" : "X";
   }
 
   get isFull() {
-    // no null values in the grid? full board
+    // no null values in the grid? board must be full
     return Object.entries(this._grid).every(([_, value]) => !!value);
   }
 
   getCell = (name: number) => (name in this._grid ? this._grid[name] : null);
 
   setCell = (name: number) => {
-    // no winner yet, a valid name and an empty cell? Set the value.
+    // no winner yet, a valid name and an empty cell? Set grid cell to whoever's turn this is.
     if (!this.winner && name in this._grid && !this._grid[name])
       this._grid[name] = this.turn;
   };
