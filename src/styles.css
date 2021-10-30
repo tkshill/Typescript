@@ -14,9 +14,45 @@
   min-width: 150px;
   min-height: 150px;
   grid-template-areas:
-    "a 7 6"
-    "9 b 1"
-    "4 3 8";
+    "two seven six"
+    "nine five one"
+    "four three eight";
+}
+
+#cell1 {
+  grid-area: one;
+}
+
+#cell2 {
+  grid-area: two;
+}
+
+#cell3 {
+  grid-area: three;
+}
+
+#cell4 {
+  grid-area: four;
+}
+
+#cell5 {
+  grid-area: five;
+}
+
+#cell6 {
+  grid-area: six;
+}
+
+#cell7 {
+  grid-area: seven;
+}
+
+#cell8 {
+  grid-area: eight;
+}
+
+#cell9 {
+  grid-area: nine;
 }
 
 #status {

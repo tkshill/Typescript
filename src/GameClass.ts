@@ -2,7 +2,7 @@ import * as C from "js-combinatorics";
 
 type Grid = { [key: number]: "X" | "O" | null };
 
-const keys = [2, 7, 6, 9, 5, 1, 4, 3, 8];
+const keys = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 // get every unique combination of 3 numbers and only keep the ones that sum to 15
 // I'll explain why this works later.

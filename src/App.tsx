@@ -15,7 +15,7 @@ export default function App() {
   };
 
   const Cell = (num: number) => (
-    <button key={num} id={`${num}`} onClick={() => update(num)}>
+    <button key={num} id={`cell${num}`} onClick={() => update(num)}>
       {state.game.getCell(num) ?? ""}
     </button>
   );
