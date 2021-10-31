@@ -1,4 +1,4 @@
-import * as C from "js-combinatorics";
+import { Combination } from "js-combinatorics";
 
 type Grid = { [key: number]: "X" | "O" | null };
 
@@ -6,7 +6,7 @@ const keys = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 // get every unique combination of 3 numbers and only keep the ones that sum to 15
 // I'll explain why this works later.
-const winningCombos = [...new C.Combination(keys, 3)].filter(
+const winningCombos = [...new Combination(keys, 3)].filter(
   (nums) => nums.reduce((acc, num) => acc + num) === 15
 );
 
@@ -33,7 +33,7 @@ export default class Game {
   }
 
   get turn() {
-    // get the grid items
+    // get the grid values
     const counts = Object.values(this._grid)
       // use reduce to make an object that counts all the Xs and Os
       .reduce(
