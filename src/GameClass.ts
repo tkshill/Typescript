@@ -13,7 +13,7 @@ const winningCombos = [...new C.Combination(keys, 3)].filter(
 const hasWinner = (grid: Grid) =>
   !!winningCombos
     // get the corresponding grid items
-    .map((comboNumbers) => comboNumbers.map((num) => grid[num]))
+    .map((comboNumbers) => comboNumbers.map((key) => grid[key]))
     // if you find at least one with all Xs or all Os, there's a winner!
     .find(
       (comboValues) =>
@@ -59,12 +59,12 @@ export default class Game {
     return Object.entries(this._grid).every(([_, value]) => !!value);
   }
 
-  getCell = (name: number) => (name in this._grid ? this._grid[name] : null);
+  getCell = (key: number) => (key in this._grid ? this._grid[key] : null);
 
-  setCell = (name: number) => {
+  setCell = (key: number) => {
     // no winner yet, a valid name and an empty cell? Set grid cell to whoever's turn this is.
-    if (!this.winner && name in this._grid && !this._grid[name])
-      this._grid[name] = this.turn;
+    if (!this.winner && key in this._grid && !this._grid[key])
+      this._grid[key] = this.turn;
   };
 
   get cellNames() {
