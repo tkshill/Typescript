@@ -13,7 +13,7 @@ const winningCombos = [...new Combination(keys, 3)].filter(
 const hasWinner = (grid: Grid) =>
   !!winningCombos
     // get the corresponding grid items
-    .map((comboNumbers) => comboNumbers.map((key) => grid[key]))
+    .map((combo) => combo.map((key) => grid[key]))
     // if you find at least one with all Xs or all Os, there's a winner!
     .find(
       (comboValues) =>
