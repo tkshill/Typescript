@@ -11,11 +11,11 @@ const winningCombos = new Combination(keys, 3).toArray().filter(
 );
 
 const hasWinner = (grid: Grid) =>
-  !!winningCombos
+  winningCombos
     // get the corresponding grid items
     .map((combo) => combo.map((key) => grid[key]))
     // if you find at least one with all Xs or all Os, there's a winner!
-    .find(
+    .some(
       (comboValues) =>
         comboValues.every((v) => v === "X") ||
         comboValues.every((v) => v === "O")
