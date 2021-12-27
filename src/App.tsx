@@ -9,10 +9,14 @@ export default function App() {
 
   // this is where we update the state of our application
   const update = (value: number | "Restart") => {
-    if (value !== "Restart") {
-      state.game.setCell(value);
-      setState({ ...state });
-    } else setState(initialGame());
+    switch (value) {
+      case "Restart":
+        setState(initialGame());
+        break;
+      default:
+        state.game.setCell(value);
+        setState({ ...state });
+    }
   };
 
   // our tiny little cell component
@@ -23,18 +27,18 @@ export default function App() {
   );
 
   // I really dislike curly braces
-  const statusMessage = () => {
+  const statusMessage = (() => {
     if (state.game.winner) return `${state.game.winner} won the game!`;
     else if (state.game.isFull) return "The game is a draw!";
     else return `${state.game.turn}'s turn to play!`;
-  };
+  })();
 
   // Putting it all together
   return (
     <div className="App">
       <h1>ReacTacToe</h1>
       <div id="gamebox">{state.game.cellNames.map(Cell)}</div>
-      <div id="status">{statusMessage()}</div>
+      <div id="status">{statusMessage}</div>
       <button onClick={() => update("Restart")}>Restart</button>
     </div>
   );
