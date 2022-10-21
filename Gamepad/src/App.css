@@ -1,0 +1,127 @@
+#root {
+  height: 100vh;
+  font-family: Verdana, sans-serif;
+  text-align: center;
+  min-width: 300px;
+  max-width: 1366px;
+}
+
+#main-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+#form-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: center;
+  padding: 1rem;
+}
+
+#form-content > * {
+  padding: 1rem;
+}
+
+#controller {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+}
+
+#buttons {
+  display: grid;
+  gap: 1rem;
+  grid-template-areas:
+    " . ybutton . "
+    " xbutton . abutton "
+    " . bbutton . ";
+}
+
+#buttons > * {
+  width: 3rem;
+  height: 3rem;
+  max-height: 50px;
+  max-width: 50px;
+  min-height: 20px;
+  min-width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#A {
+  grid-area: abutton;
+  background-color: yellow;
+}
+
+#B {
+  grid-area: bbutton;
+  background-color: red;
+}
+
+#X {
+  grid-area: xbutton;
+  background-color: #66d3fa;
+}
+
+#Y {
+  grid-area: ybutton;
+  background-color: rgb(63, 179, 9);
+}
+
+.contbutton {
+  border-radius: 50%;
+}
+
+.NotPressed {
+  filter: grayscale(90%);
+}
+
+.Pressed {
+  filter: grayscale(0%);
+  border-width: 4px;
+  border-style: solid;
+}
+
+#sticks {
+  display: grid;
+  gap: 1rem;
+  padding: 5rem;
+  grid-template-areas:
+    " left .  "
+    " . right ";
+}
+
+.stick {
+  border-radius: 50%;
+  background-color: grey;
+  width: 5rem;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#Left {
+  grid-area: left;
+}
+
+#Right {
+  grid-area: right;
+}
