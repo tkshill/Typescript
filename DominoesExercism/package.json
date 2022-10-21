@@ -1,0 +1,18 @@
+{
+  "version": "0.0.13",
+  "name": "dominoes",
+  "description": "Implementation of the exercism dominoes problem using Typescript.\n\nInspired by https://exercism.io/tracks/fsharp/exercises/dominoes/solutions/8d97e2a04a40484eae7cb0d6c30f515b",
+  "dependencies": {
+    "typescript": "4.2.3"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "react-scripts": "1.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

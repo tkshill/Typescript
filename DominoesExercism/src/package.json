@@ -1,0 +1,9 @@
+{
+  "version": "0.0.0",
+  "name": "dominoes",
+  "description": "Down with Graph theory and Typescript",
+  "dependencies": {
+    "typescript": "4.2.3"
+  },
+  "keywords": []
+}
